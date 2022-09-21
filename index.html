@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div>이름: <input type="text" id="name"/></div>
+        <div>지역 :
+            <select id="city" onchange="changeCity();"> 
+                <!-- city 값이 바뀔 때마다 changeCity 함수 호출 -->
+                <option value="02" selected>서울</option>
+                <option value="064">제주</option>
+            </select>
+     </div>
+
+     <div>동네: 
+        <select id="region_02"> 
+            <option value="">강남</option>
+            <option value="">서초</option>
+            <!-- 동네에 있는 select box id는 region_02 또는 region_064 -->
+        </select>
+
+        <select id="region_064" style="display:none;">
+             <!-- style = display:none은 화면에 안보이게끔 해주는 기능 -->
+            <option value="">제주시</option>
+            <option value="">서귀포시</option>
+        </select>
+        <div>테스트: <input type="text" id="test"/></div>
+     </div>
+     <button type="button" onclick="regist();">등록</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" 
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" 
+integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+    <script>
+        function regist(){
+            // alert(document.getElementById("name").value);
+            // alert(document.getElementById("city").value);
+            
+            //  alert('버튼을 클릭했습니다');
+          
+            alert($("#city").val());
+            alert($("#name").val());
+
+         /*   let obj = {
+                name: "",
+                city: ""
+            }; */
+
+            //object 안에 또 obj 담기
+            let obj = {
+                obj2: {
+
+                },
+                arr:[] //배열도 담을 수 있음
+            }; //어떤 데이터타입도 담을 수 있는게 obj
+
+            obj.city = $("#city").val();
+            obj.name = $("#name").val();
+            //오브젝트 값에 접근할 때는 key로 접근
+
+            console.log(obj); // 이렇게 쓰면 개발자도구 콘솔창에 찍을 수 있음
+           
+            //obj를 printConsole이라는 함수를 통해서 콘솔에 찍고싶으면 아래와 같이 씀
+            printConsole(obj);
+
+        }
+
+        function loadCity(){
+            let city = [{
+                code:"02",
+                name:"서울"
+                },
+                {
+                code:"064",
+                nmae:"제주"
+                }
+            ]; //배열은 대괄호. 배열 안에 숫자,문자, obj 다 담을 수 있음
+        }
+
+        function printConsole(data){
+            console.log(data); // 받아온 데이터를 콘솔에 찍음
+        }
+
+        function changeCity(){ // 이 함수에서는 city 값 호출 / city 값은 02 또는 064
+           /* let city = document.getElementById("city").value;
+            document.getElementById("region_02").style.display = "none";
+            document.getElementById("region_064").style.display = "none";
+            // 처음엔 다 none으로 설정
+            document.getElementById("region_"+city).style.display = ""; // 선택 되면 바뀌는거로 설정
+            // 위는 html javascript 코어로 짠 코드
+            */
+
+            //jquery 로 짜면 아래와 같음
+            let city = $('#city').val();
+            $('#region_02').hide();
+            $('#region_064').hide();
+            $('#region_'+city).show(); //hide, show는 jquery에 있는 메서드
+        }
+
+        //javascript에서 변수는 var, let, const 만 기억하면 됨
+        //var: 선언했던 변수 재사용 가능
+        //let: 선언했던 변수 재사용 불가
+        //const: 절대 바뀌지 않는 값으로 선언
+        //오브젝트는 key+value로 이루어진 묶음 (json도 object 형태)
+
+        var x = 1;
+        x = x + 2;
+
+        document.getElementById("test").value = x;
+       
+    </script>
+</body>
+</html>
