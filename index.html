@@ -14,8 +14,8 @@
         <div>지역 :
             <select id="city" onchange="changeCity();"> 
                 <!-- city 값이 바뀔 때마다 changeCity 함수 호출 -->
-                <option value="02" selected>서울</option>
-                <option value="064">제주</option>
+                <!-- <option value="02" selected>서울</option>
+                <option value="064">제주</option> -->
             </select>
      </div>
 
@@ -77,16 +77,31 @@ integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6
         }
 
         function loadCity(){
-            let city = [{
+            let city = [
+                {
                 code:"02",
                 name:"서울"
                 },
                 {
                 code:"064",
-                nmae:"제주"
+                name:"제주"
                 }
             ]; //배열은 대괄호. 배열 안에 숫자,문자, obj 다 담을 수 있음
+
+            for(let i=0; i<city.length; i++){
+                if(i==0)
+                $('#city').append('<option value="' + city[i].code + '" selected>' + city[i].name + '</option>');
+                else
+                $('#city').append('<option value="' + city[i].code + '">' + city[i].name + '</option>');
+            }
+
+            //jquery 이용
+       //     $('#city').append('<option value="02" selected>서울</option>');
+       //     $('#city').append('<option value="064" selected>제주</option>');
+            //append함수는 city라는 객체 안에 옵션 값 넣어주는 기능
         }
+
+        loadCity(); //함수호출
 
         function printConsole(data){
             console.log(data); // 받아온 데이터를 콘솔에 찍음
