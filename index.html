@@ -78,14 +78,18 @@ integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6
 
         function loadCity(){
             let city = [
-                {
+            {
                 code:"02",
                 name:"서울"
-                },
-                {
+            },
+            {
                 code:"064",
                 name:"제주"
-                }
+            },
+            {
+                code:"031",
+                name:"부산"
+            }
             ]; //배열은 대괄호. 배열 안에 숫자,문자, obj 다 담을 수 있음
 
             for(let i=0; i<city.length; i++){
@@ -133,7 +137,7 @@ integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6
         x = x + 2;
 
         document.getElementById("test").value = x;
-       
+       //javascript 코드는 가능하면 body 닫는 종료코드 바로 위쪽에 써주는게 좋다. 화면 로딩 속도 빨라짐
     </script>
 </body>
 </html>
