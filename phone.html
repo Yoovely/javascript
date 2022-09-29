@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Phone Number</title>
+    <style>
+        input:invalid{
+            border: red solid 3px;
+        }
+    </style>
+</head>
+
+<!-- onkeyup: 사용자가 Input box에 키를 입력하고 손을 떼는 순간을 의미 -->
+<body>
+    <input type="text" id="tel1" maxlength="3" pattern="^01[0-9]{1}" required="required" 
+    onkeyup="next(this.value, 3, 'tel2');" onkeydown="checkNum(event, this.value)"/> - 
+    <input type="text" id="tel2" maxlength="4" pattern="[0-9]{4}" required="required" 
+    onkeyup="next(this.value, 4, 'tel3');" onkeydown="checkNum(event, this.value)"/> - 
+    <input type="text" id="tel3" maxlength="4" pattern="[0-9]{4}" required="required" 
+    onkeydown="checkNum(event, this.value)"/>
+</body>     
+
+<script>
+    function next(val, len, nextId){ // parameter 3개
+        if(val.length == len){
+            document.getElementById(nextId).focus(); // val에 입력한 길이가 두번째 파라미터인 len과 같은 경우 다음 칸으로 focus 옮겨줌
+        }
+    }
+
+    function checkNum(event){
+        var key = event.key;
+        console.log(key); // 사용자가 키 입력하면 바로 찍히게
+        if((key >= 0 && key < 10) || key == 'Backspace'){
+            return true; // 사용자가 입력한 키가 0-9 사이거나 지우는거면 event 진행시켜
+        }
+        else {
+            event.preventDefault(); // 그 외에는 event 진행시키는걸 중지하겠다
+        }
+    }
+</script>
+
+</html>
