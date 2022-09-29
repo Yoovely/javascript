@@ -6,8 +6,8 @@ const userList = [ //array 선언
 ];
 
 var mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-console.log(parseInt("05"));
-console.log(mon[parseInt("05")-1]);
+console.log(parseInt("05")); // 근데 굳이 여기서 parseInt 할필요 없는듯..?
+console.log(mon[5-1]); // 바로 숫자 넣어도 되는뎁,,
 
 const newUserList = userList.map( u => (
     {
@@ -19,7 +19,7 @@ const newUserList = userList.map( u => (
         year: u.yyyymmdd.substring(0,4), // 0-4까지
         month: u.yyyymmdd.substring(4,6), // 4-6까지
         day: u.yyyymmdd.substring(6,8), // 6-8까지
-        usDateFormat: mon[parseInt(u.yyyymmdd.substring(4,6))-1] + " " + parseInt(u.yyyymmdd.substring(6,8)) + " " + u.yyyymmdd.substring(0,4),
+        usDateFormat: mon[u.yyyymmdd.substring(4,6)-1] + " " + u.yyyymmdd.substring(6,8) + " " + u.yyyymmdd.substring(0,4),
         phone: u.phone, 
         address: u.address
     }
@@ -27,3 +27,5 @@ const newUserList = userList.map( u => (
 
 
 console.log(newUserList);
+
+// 위와 같이 map은 기존 데이터를 이용해 새로운 필드를 추가할 때 사용
