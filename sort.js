@@ -51,3 +51,7 @@ const userList = [ //array 선언
         address:"Seoul"
     }
 ];
+
+// 이름순으로 userList sort
+var sortUserList = userList.sort((a,b) => (a.firstName < b.firstName)?-1:(a.firstName > b.firstName)?1:0); // 크면 1이고 아니면 0
+console.log(sortUserList); // 순서 바뀌어 출력 됨
