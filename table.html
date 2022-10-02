@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <td onclick="sort('userId');">UserId</td>
+                    <td onclick="sort('firstName');">First Name</td>
+                    <td onclick="sort('lastName');">Last Name</td>
+                    <td onclick="sort('yyyymmdd');">yyyymmdd</td>
+                    <td onclick="sort('phone');">phone</td>
+                    <td onclick="sort('address');">address</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</body> 
+
+<script>
+    var userList = [
+    {
+        userId:"1",
+        firstName:"Yoolee",
+        lastName:"Lee", 
+        yyyymmdd:"20220908", 
+        phone:"010-111-1111", 
+        address:"Seoul"
+    },
+    {
+        userId:"2", 
+        firstName:"Jeremy", 
+        lastName:"Jucker", 
+        yyyymmdd:"20200303", 
+        phone:"010-111-1234", 
+        address:"Jeju"
+    },
+    {
+        userId:"3", 
+        firstName:"Heesong", 
+        lastName:"Lee", 
+        yyyymmdd:"19940202", 
+        phone:"010-123-1111", 
+        address:"Seoul"
+    }
+];
+
+var sortOption = { // 오름차순/내림차순 구분해주기 위한 sortOption 변수 선언
+    userId: true,
+    firstName: true,
+    lastName: true,
+    yyyymmdd: true,
+    phone: true,
+    address: true
+}
+
+function sort(sortField) {
+    if(sortOption[sortField]){ // true면 아래와 같이 정렬
+        userList = userList.sort((a,b) => (a[sortField] < b[sortField])? -1:(a[sortField] > b[sortField])? 1:0);
+        // object의 키로 접근할때는 object.key값으로 접근 가능하나, sortField는 변수이므로 대괄호로 접근
+        // 클릭해서 넘어온 필드를 가지고 정렬
+    } else{ // false면 아래와 같이 정렬
+        userList = userList.sort((a,b) => (a[sortField] < b[sortField])? 1:(a[sortField] > b[sortField])? -1:0);
+        // 1, -1만 반대로 설정해서 정렬 반대로 바꿔주기
+    }
+
+    sortOption[sortField] = !sortOption[sortField]; // true인 경우는 falst로 바꿔주고 false인 경우는 true로 바꿔줌
+
+    renderTable(userList);
+    // table을 다시 렌더링
+    // constant variable 오류: userList를 const 타입으로 선언해서 data assign할 수 없다. -> userList 변수를 var 타입으로 변경해주기
+}
+
+// table 렌더링
+function renderTable(data){// data를 파라미터로 받음
+    var oTable = document.querySelector('table>tbody');
+
+    var h = [];
+    userList.forEach(item => {
+        h.push("<tr>");
+        h.push("<td>" + item.userId + "</td>");
+        h.push(`<td>${item.firstName}</td>`); // 바로 윗 줄과 동일한 방법인데 이렇게 쓸 수 있도록 바뀜 -> 이게 더 편함
+        h.push(`<td>${item.lastName}</td>`);
+        h.push(`<td>${item.yyyymmdd}</td>`);
+        h.push(`<td>${item.phone}</td>`);  
+        h.push(`<td>${item.address}</td>`);
+        h.push("</tr>");
+    });
+
+   // 참고로 요즘은 jQuery나 react, vue를 쓰기 때문에 위와 같이 javascript 날코딩할 일이 거의 없음
+
+    oTable.innerHTML = h.join("");
+    // join 메서드: 배열 요소를 합쳐주는 기능
+}
+
+renderTable(userList);
+
+
+</script>
+</html>
