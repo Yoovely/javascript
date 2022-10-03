@@ -12,6 +12,9 @@
 
 <body>
     <div class="container">
+        <div> 
+            <input type="search" class="form-control" style="margin-bottom:5px;" onkeydown="doSearch(event, this.value)" />
+        </div> 
         <table class="table table-bordered table-sm">
             <thead>
                 <tr>
@@ -81,6 +84,15 @@ function sort(sortField) {
     renderTable(userList);
     // table을 다시 렌더링
     // constant variable 오류: userList를 const 타입으로 선언해서 data assign할 수 없다. -> userList 변수를 var 타입으로 변경해주기
+}
+
+function doSearch(e, keyword){
+    if(e.keyCode == 13){ // 엔터키의 코드가 13
+        var regexp = new RegExp(keyword, 'gi'); //g: 모든걸 찾아라, i: 대소문자 구분하지말고 다 찾아라
+        var data = userList.filter(item => (regexp.test(item.userId) || regexp.test(item.firstName) || regexp.test(item.lastName) || 
+        regexp.test(item.yyyymmdd) || regexp.test(item.phone) || regexp.test(item.address)));
+        renderTable(data);
+    }
 }
 
 // table 렌더링
