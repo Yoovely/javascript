@@ -96,11 +96,11 @@ function doSearch(e, keyword){
 }
 
 // table 렌더링
-function renderTable(data){// data를 파라미터로 받음
+function renderTable(data){ // data를 파라미터로 받음
     var oTable = document.querySelector('table>tbody');
 
     var h = [];
-    userList.forEach(item => {
+    data.forEach(item => { // 여기가 userList.forEach가 아니라 data.forEach였다! 그래서 검색 기능 안되었던 것..
         h.push("<tr>");
         h.push("<td>" + item.userId + "</td>");
         h.push(`<td>${item.firstName}</td>`); // 바로 윗 줄과 동일한 방법인데 이렇게 쓸 수 있도록 바뀜 -> 이게 더 편함
