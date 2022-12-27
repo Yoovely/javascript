@@ -20,7 +20,7 @@
         recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition) ();
 
         recognition.lang = "en";
-        recognition.maxAlternatives = 5; // 스피치해서 유사한 결과를 최대 5개까지 돌려주겠다는 의미
+        recognition.maxAlternatives = 5; // 스피치해서 유사한 결과를 최대 5개까지 돌려줌
 
         if(!recognition){
             alert("You cannot use speech api.");
