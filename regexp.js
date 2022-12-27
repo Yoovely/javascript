@@ -24,4 +24,4 @@ console.log(regexp_mobile.test("010-1234-421"));
 // myvalues.good@abc.com - ok
 // @myvalue.com - x
 // myvalue@.com - x
-var regexp_email = //;
+var regexp_email = /^\w+/;
